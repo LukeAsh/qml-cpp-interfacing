@@ -9,6 +9,7 @@
 class ObjectListWrapper : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QList<QObject*> mypersons READ mypersons WRITE setMypersons NOTIFY mypersonsChanged)
 public:
     explicit ObjectListWrapper(QObject *parent = nullptr);
     bool initialize();
@@ -24,9 +25,15 @@ public:
 
     Q_INVOKABLE void addPerson();
 
+    QList<QObject*> mypersons() const;
+
+    void setMypersons(QList<QObject*> mypersons);
+
 signals:
 
-public slots:
+    void mypersonsChanged(QList<QObject*> mypersons);
+
+
 
 private:
     void populateModelWithData();
@@ -37,6 +44,7 @@ private:
 
     QList<QObject*> mPersons;//This should be QObject*, Person* is not going to work in QML
     QQmlApplicationEngine mEngine;
+    //QList<QObject*> m_mypersons;
 };
 
 #endif // OBJECTLISTWRAPPER_H

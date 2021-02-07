@@ -27,7 +27,7 @@ void ObjectListWrapper::setNames(int index, const QString &names)
     if( names!= person->names())
     {
         person->setNames(names);
-        resetModel();
+
     }
     printPersons();
 }
@@ -40,7 +40,7 @@ void ObjectListWrapper::setAge(int index, const int &age)
     if( age!= person->age())
     {
         person->setAge(age);
-        resetModel();
+
     }
     printPersons();
 }
@@ -53,7 +53,7 @@ void ObjectListWrapper::setFavoriteColor(int index, const QString &favoriteColor
     if( favoriteColor!= person->favoriteColor())
     {
         person->setFavoriteColor(favoriteColor);
-        resetModel();
+
     }
     printPersons();
 }
@@ -66,7 +66,21 @@ QList<QObject *> ObjectListWrapper::persons() const
 void ObjectListWrapper::addPerson()
 {
     mPersons.append(new Person("New Person","green",32,this));
-    resetModel();
+    emit mypersonsChanged(mPersons);
+}
+
+QList<QObject *> ObjectListWrapper::mypersons() const
+{
+    return mPersons;
+}
+
+void ObjectListWrapper::setMypersons(QList<QObject *> mypersons)
+{
+    if (mPersons == mypersons)
+        return;
+
+    mPersons = mypersons;
+    emit mypersonsChanged(mPersons);
 }
 
 void ObjectListWrapper::populateModelWithData()
@@ -79,7 +93,7 @@ void ObjectListWrapper::populateModelWithData()
 void ObjectListWrapper::resetModel()
 {
     mEngine.rootContext()->setContextProperty("Wrapper",this);
-    mEngine.rootContext()->setContextProperty("myModel",QVariant::fromValue(persons()));
+    //mEngine.rootContext()->setContextProperty("myModel",QVariant::fromValue(persons()));
 
 }
 

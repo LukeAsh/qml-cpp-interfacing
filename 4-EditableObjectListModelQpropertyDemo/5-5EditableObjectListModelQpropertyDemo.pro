@@ -14,8 +14,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    person.cpp \
-    objectlistwrapper.cpp
+    objectlistwrapper.cpp \
+    person.cpp
 
 RESOURCES += qml.qrc
 
@@ -31,5 +31,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    person.h \
-    objectlistwrapper.h
+    objectlistwrapper.h \
+    person.h

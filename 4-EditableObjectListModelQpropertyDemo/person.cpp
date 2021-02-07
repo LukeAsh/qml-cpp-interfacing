@@ -32,7 +32,7 @@ void Person::setNames(QString names)
         return;
 
     m_names = names;
-    //emit namesChanged(m_names);
+    emit namesChanged(m_names);
 }
 
 void Person::setFavoriteColor(QString favoriteColor)
@@ -41,7 +41,7 @@ void Person::setFavoriteColor(QString favoriteColor)
         return;
 
     m_favoriteColor = favoriteColor;
-    //emit favoriteColorChanged(m_favoriteColor);
+    emit favoriteColorChanged(m_favoriteColor);
 }
 
 void Person::setAge(int age)
@@ -50,5 +50,5 @@ void Person::setAge(int age)
         return;
 
     m_age = age;
-    //emit ageChanged(m_age);
+    emit ageChanged(m_age);
 }
